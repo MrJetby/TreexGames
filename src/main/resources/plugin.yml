@@ -1,0 +1,9 @@
+name: TreexGames
+version: '${project.version}'
+main: me.jetby.treexgames.Main
+api-version: '1.16'
+depend:
+  - DecentHolograms
+commands:
+  treexgames: {}
+  capture: {}

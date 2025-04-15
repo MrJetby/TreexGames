@@ -1,0 +1,138 @@
+# menu.yml
+title: "&6Меню ивентов"
+open_permission: none
+size: 54
+
+noActive: "&cАктивных ивентов на данный момент нету"
+# Центральный слот для отображения текущего активного ивента
+info-slot: 22
+event_types:
+  - block_break
+  - craft_items
+  - enchant_items
+  - fishing
+  - mob_kills
+  - pass_items
+  - player_kill
+Items:
+  # Фоновые предметы (не кликабельные)
+  background:
+    material: GRAY_STAINED_GLASS_PANE
+    slots: [0-9, 17-18, 26-27, 35-44, 45-53]
+    display_name: " "
+
+  # Декоративные элементы
+  decoration_left:
+    material: RED_STAINED_GLASS_PANE
+    slots: [10-16]
+    display_name: " "
+
+  decoration_right:
+    material: BLUE_STAINED_GLASS_PANE
+    slots: [19-25, 28-34]
+    display_name: " "
+
+  # Ивент: Добыча блоков
+  block_break:
+    material: DIAMOND_PICKAXE
+    display_name: "&bДобыча блоков"
+    lore:
+      - ""
+      - "&7Требуется: &e%treexgames_target_name%"
+      - ""
+      - "&6Топ игроков:"
+      - "&7#1 &f%treexgames_top_1%"
+      - "&7#2 &f%treexgames_top_2%"
+      - "&7#3 &f%treexgames_top_3%"
+      - ""
+      - "&7Ваш прогресс: &a%treexgames_progress%"
+      - "&7До конца: &e%treexgames_time_to_end_string%"
+
+  # Ивент: Крафт предметов
+  craft_items:
+    material: CRAFTING_TABLE
+    display_name: "&bКрафт предметов"
+    lore:
+      - ""
+      - "&7Требуется: &e%treexgames_target_name%"
+      - ""
+      - "&6Топ игроков:"
+      - "&7#1 &f%treexgames_top_1%"
+      - "&7#2 &f%treexgames_top_2%"
+      - "&7#3 &f%treexgames_top_3%"
+      - ""
+      - "&7Ваш прогресс: &a%treexgames_progress%"
+      - "&7До конца: &e%treexgames_time_to_end_string%"
+
+  # Ивент: Рыбалка
+  fishing:
+    material: FISHING_ROD
+    display_name: "&bРыбалка"
+    lore:
+      - ""
+      - "&7Требуется: &e%treexgames_target_name%"
+      - ""
+      - "&6Топ игроков:"
+      - "&7#1 &f%treexgames_top_1%"
+      - "&7#2 &f%treexgames_top_2%"
+      - "&7#3 &f%treexgames_top_3%"
+      - ""
+      - "&7Ваш прогресс: &a%treexgames_progress%"
+      - "&7До конца: &e%treexgames_time_to_end_string%"
+
+  # Ивент: Убийства мобов
+  mob_kills:
+    material: IRON_SWORD
+    display_name: "&bУбийства мобов"
+    lore:
+      - ""
+      - "&7Требуется: &e%treexgames_target_name%"
+      - ""
+      - "&6Топ игроков:"
+      - "&7#1 &f%treexgames_top_1%"
+      - "&7#2 &f%treexgames_top_2%"
+      - "&7#3 &f%treexgames_top_3%"
+      - ""
+      - "&7Ваш прогресс: &a%treexgames_progress%"
+      - "&7До конца: &e%treexgames_time_to_end_string%"
+
+  # Ивент: Сдача предметов
+  pass_items:
+    material: CHEST
+    display_name: "&bСдача предметов"
+    lore:
+      - ""
+      - "&7Требуется: &e%treexgames_target_name%"
+      - ""
+      - "&6Топ игроков:"
+      - "&7#1 &f%treexgames_top_1%"
+      - "&7#2 &f%treexgames_top_2%"
+      - "&7#3 &f%treexgames_top_3%"
+      - ""
+      - "&7Ваш прогресс: &a%treexgames_progress%"
+      - "&7До конца: &e%treexgames_time_to_end_string%"
+      - ""
+      - "&eНажмите чтобы сдать предметы"
+    actions:
+      success:
+        - "[MESSAGE] &aВы успешно сдали предметы"
+      deny:
+        - "[MESSAGE] &cНе найдено предметов"
+
+
+  # Ивент: Убийства игроков
+  player_kill:
+    material: DIAMOND_SWORD
+    display_name: "&bУбийства игроков"
+    lore:
+      - ""
+      - "&7Требуется: &e%treexgames_target_name%"
+      - ""
+      - "&6Топ игроков:"
+      - "&7#1 &f%treexgames_top_1%"
+      - "&7#2 &f%treexgames_top_2%"
+      - "&7#3 &f%treexgames_top_3%"
+      - ""
+      - "&7Ваш прогресс: &a%treexgames_progress%"
+      - "&7До конца: &e%treexgames_time_to_end_string%"
+

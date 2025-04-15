@@ -1,0 +1,75 @@
+
+
+prefix: "&dДобыча блоков&r"
+
+duration: 3600
+
+random-blocks:
+  - '[DIAMOND_ORE] Алмазная руда'
+  - '[STONE] Камень'
+  - '[GOLD_BLOCK] Золотой блок'
+
+# %treexgames_top_<число>_progress%
+# %treexgames_top_<число>_name%
+holo-start:
+  - "&7« &dЗахват ресурсов &7»"
+  - ""
+  - "Тип ивента: %treexgames_nowEvent_prefix%"
+  - "Блок: &d%block%"
+  - ""
+  - "&7#1 %treexgames_top_1% &fблоков"
+  - "&7#2 %treexgames_top_2% &fблоков"
+  - "&7#3 %treexgames_top_3% &fблоков"
+  - ""
+  - "До окончания ивента &d%treexgames_time_to_end_string%"
+  - ""
+  - "Вам нужно сломать &dкак можно больше &fБлоков,"
+  - "которые указаны выше!"
+  - ""
+  - "&7Нажмите чтобы открыть меню"
+
+
+
+# %treexgames_top_<число>_progress%
+# %treexgames_top_<число>_name%
+
+
+####################################################################################################
+#
+# Все команды
+#
+# [MESSAGE] Отправить игроку текст
+# [PLAYER] Выполнить команду от имени игрока
+# [CONSOLE] Выполнять команду от имени консоли
+# [ACTIONBAR] Отправить игроку текст в actionbar
+# [SOUND] Произвести игроку звук
+# [EFFECT] Дать игроку эффект
+# [TITLE] Отправить игроку тайтл, чтобы отправить субтайтл используйте символ ";"
+# Например: [TITLE] First;Second
+#
+####################################################################################################
+
+actions:
+  on_start:
+    - '[MESSAGE] Ивент %treexgames_nowEvent_prefix% начался'
+
+  on_end_prizes:
+    DIAMOND_ORE:
+      - '[CONSOLE] money give %treexgames_top_1_name% 50000'
+      - '[CONSOLE] money give %treexgames_top_2_name% 10000'
+      - '[CONSOLE] money give %treexgames_top_3_name% 5000'
+    STONE:
+      - '[CONSOLE] money give %treexgames_top_1_name% 250000'
+      - '[CONSOLE] money give %treexgames_top_2_name% 150000'
+      - '[CONSOLE] money give %treexgames_top_3_name% 100000'
+    GOLD_BLOCK:
+      - '[CONSOLE] money give %treexgames_top_1_name% 150000'
+      - '[CONSOLE] money give %treexgames_top_2_name% 100000'
+      - '[CONSOLE] money give %treexgames_top_3_name% 50000'
+
+  on_end:
+    - '[MESSAGE] Ивент %treexgames_nowEvent_prefix% закончился'
+    - '[MESSAGE] Победители'
+    - '[MESSAGE] &7#1 %treexgames_top_1% &fубийств'
+    - '[MESSAGE] &7#2 %treexgames_top_2% &fубийств'
+    - '[MESSAGE] &7#3 %treexgames_top_3% &fубийств'

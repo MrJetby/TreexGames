@@ -90,7 +90,9 @@ public class PlaceholdersAPI extends PlaceholderExpansion {
                 if (progress == 0 || name == null || name.equals("???")) {
                     return noFormat;
                 }
-                return format.replace("%player%", name).replace("%progress%", String.valueOf(progress));
+                return format
+                        .replace("%player%", name)
+                        .replace("%progress%", String.valueOf(progress));
             }
         }
 

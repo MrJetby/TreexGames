@@ -51,4 +51,7 @@ public class Config {
             getLogger().log(Level.SEVERE, "Не удалось сохранить файл config.yml", e);
         }
     }
+
+
+
 }

@@ -1,5 +1,6 @@
 package me.jetby.treexgames.events;
 
+import me.jetby.treexgames.Main;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -7,10 +8,15 @@ import org.bukkit.entity.Player;
 import java.util.List;
 import java.util.Random;
 
+import static me.jetby.treexgames.configurations.Config.CFG;
 import static me.jetby.treexgames.configurations.EventsConfig.E_CFG;
 
 public class Mob_Kills extends AbstractEvent {
     private static EntityType entityType;
+
+    public Mob_Kills(Main plugin) {
+        super(plugin.getActions());
+    }
 
     @Override
     public String getConfigPath() {
@@ -37,6 +43,9 @@ public class Mob_Kills extends AbstractEvent {
 
         entityType = EntityType.valueOf(parts[0].trim().toUpperCase());
         eventName = parts[1].trim();
+        if (CFG().getBoolean("redis.enable")) {
+            Main.getInstance().getRedis().set("treexgames:now_event", eventName);
+        }
         resetProgress();
     }
 

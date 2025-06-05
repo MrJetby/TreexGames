@@ -1,11 +1,13 @@
 package me.jetby.treexgames.managers;
 
 import java.util.List;
+import java.util.Map;
 
 public class API {
 
     private static int timer;
     private static List<String> timeZones;
+    private static Map<String, Integer> eventsList;
     private static int minPlayers;
     private static String nowEvent;
     private static String nextEvent;
@@ -24,4 +26,8 @@ public class API {
 
     public static List<String> getTimeZones() {return timeZones;}
     public static void setTimeZones(List<String> timeZones) {API.timeZones = timeZones;}
+
+
+    public static Map<String, Integer> getEventsList() {return eventsList;}
+    public static void setEventsList(Map<String, Integer> eventsList) {API.eventsList = eventsList;}
 }

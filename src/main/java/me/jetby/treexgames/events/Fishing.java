@@ -1,5 +1,6 @@
 package me.jetby.treexgames.events;
 
+import me.jetby.treexgames.Main;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -7,10 +8,15 @@ import org.bukkit.configuration.file.FileConfiguration;
 import java.util.List;
 import java.util.Random;
 
+import static me.jetby.treexgames.configurations.Config.CFG;
 import static me.jetby.treexgames.configurations.EventsConfig.E_CFG;
 
 public class Fishing extends AbstractEvent {
     private static Material itemType;
+
+    public Fishing(Main plugin) {
+        super(plugin.getActions());
+    }
 
     @Override
     public String getConfigPath() {
@@ -37,6 +43,9 @@ public class Fishing extends AbstractEvent {
 
         itemType = Material.valueOf(parts[0].trim().toUpperCase());
         eventName = parts[1].trim();
+        if (CFG().getBoolean("redis.enable")) {
+            Main.getInstance().getRedis().set("treexgames:now_event", eventName);
+        }
         resetProgress();
     }
 

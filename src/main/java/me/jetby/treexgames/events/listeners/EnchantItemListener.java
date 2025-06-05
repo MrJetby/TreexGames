@@ -1,5 +1,6 @@
 package me.jetby.treexgames.events.listeners;
 
+import me.jetby.treexgames.events.Craft_Items;
 import me.jetby.treexgames.events.Enchant_Items;
 import me.jetby.treexgames.managers.API;
 import org.bukkit.Material;
@@ -9,20 +10,17 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
 
 public class EnchantItemListener implements Listener {
-    Enchant_Items event = new Enchant_Items();
+    private final Enchant_Items event;
+    public EnchantItemListener(Enchant_Items event) {
+        this.event = event;
+    }
     @EventHandler
     public void onEnchant(EnchantItemEvent e) {
         processEnchantment(e.getEnchanter(), e.getEnchantsToAdd());

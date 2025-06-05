@@ -1,5 +1,6 @@
 package me.jetby.treexgames.events;
 
+import me.jetby.treexgames.Main;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
@@ -7,16 +8,19 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
+import static me.jetby.treexgames.configurations.Config.CFG;
 import static me.jetby.treexgames.configurations.EventsConfig.E_CFG;
 
 public class Enchant_Items extends AbstractEvent {
     private static Enchantment enchantment;
     private static int enchantLevel;
+
+    public Enchant_Items(Main plugin) {
+        super(plugin.getActions());
+    }
 
     @Override
     public String getConfigPath() {
@@ -45,6 +49,9 @@ public class Enchant_Items extends AbstractEvent {
         enchantment = Enchantment.getByKey(org.bukkit.NamespacedKey.minecraft(enchantParts[0].toLowerCase()));
         enchantLevel = enchantParts.length > 1 ? Integer.parseInt(enchantParts[1]) : 1;
         eventName = parts[1].trim();
+        if (CFG().getBoolean("redis.enable")) {
+            Main.getInstance().getRedis().set("treexgames:now_event", eventName);
+        }
         resetProgress();
     }
     public static boolean checkEnchantment(ItemStack item) {

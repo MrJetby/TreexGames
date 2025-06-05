@@ -1,5 +1,6 @@
 package me.jetby.treexgames.events;
 
+import lombok.Getter;
 import me.jetby.treexgames.Main;
 import me.jetby.treexgames.utils.Actions;
 import me.jetby.treexgames.utils.Hologram;
@@ -21,13 +22,15 @@ import static me.jetby.treexgames.utils.FormatTime.stringFormat;
 import static me.jetby.treexgames.utils.Parser.hex;
 
 public abstract class AbstractEvent {
+    @Getter
     protected static String eventName;
     protected static final Map<UUID, Integer> progressMap = new HashMap<>();
     protected final Pattern pattern = Pattern.compile("%treexgames_top_(\\d+)(?:_(progress|name))?%");
 
+    private final Actions actions;
 
-    public static String getEventName() {
-        return eventName;
+    protected AbstractEvent(Actions actions) {
+        this.actions = actions;
     }
 
     public void startTimer(String configPath) {
@@ -87,7 +90,7 @@ public abstract class AbstractEvent {
         String rewardKey = "treexgames:event:" + eventName + ":rewarded:" + uuid;
         String given = Main.getInstance().getRedis().get(rewardKey);
 
-        // если уже выдано – не выдавать повторно
+        // если уже выдано – не выдавать повторно на всякий случай запишу чтобы не забыть
         if ("1".equals(given)) return false;
 
         Main.getInstance().getRedis().set(rewardKey, "1");

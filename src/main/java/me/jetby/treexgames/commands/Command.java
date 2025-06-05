@@ -3,6 +3,7 @@ package me.jetby.treexgames.commands;
 import me.jetby.treexgames.Main;
 import me.jetby.treexgames.configurations.Config;
 import me.jetby.treexgames.configurations.EventsConfig;
+import me.jetby.treexgames.managers.Triggers;
 import me.jetby.treexgames.utils.Hologram;
 import org.bukkit.Location;
 import org.bukkit.command.CommandExecutor;
@@ -10,15 +11,22 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import static me.jetby.treexgames.configurations.Config.CFG;
-import static me.jetby.treexgames.gui.EventsMenu.openMenu;
 import static me.jetby.treexgames.managers.API.getNowEvent;
-import static me.jetby.treexgames.managers.Triggers.endEvent;
-import static me.jetby.treexgames.managers.Triggers.startEvent;
 import static me.jetby.treexgames.utils.Parser.hex;
 
 public class Command implements CommandExecutor {
+
+    private final Triggers triggers;
+    private final Main plugin;
+    public Command(Main pl) {
+        this.plugin = pl;
+        this.triggers = pl.getTriggers();
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
+
+        if (!sender.hasPermission("treexgames.admin")) return true;
 
         if (args.length==0) {
             return true;
@@ -30,7 +38,7 @@ public class Command implements CommandExecutor {
             }
 
             if (getNowEvent()==null) {
-                startEvent(args[1]);
+                triggers.startEvent(args[1]);
 
             } else {
                 sender.sendMessage(hex("&cОстановите активный ивент чтобы запустить новый!"));
@@ -41,7 +49,7 @@ public class Command implements CommandExecutor {
 
         if (args[0].equalsIgnoreCase("end")) {
 
-            endEvent();
+            triggers.endEvent();
 
             return true;
         }
@@ -51,15 +59,8 @@ public class Command implements CommandExecutor {
             Config config = new Config();
             config.loadYamlFile(Main.getInstance());
 
-            EventsConfig eventsConfig = new EventsConfig();
-            eventsConfig.reloadCfg(Main.getInstance(), "menu.yml");
-            eventsConfig.reloadCfg(Main.getInstance(), "events/block_break.yml");
-            eventsConfig.reloadCfg(Main.getInstance(), "events/craft_items.yml");
-            eventsConfig.reloadCfg(Main.getInstance(), "events/enchant_items.yml");
-            eventsConfig.reloadCfg(Main.getInstance(), "events/fishing.yml");
-            eventsConfig.reloadCfg(Main.getInstance(), "events/mob_kills.yml");
-            eventsConfig.reloadCfg(Main.getInstance(), "events/pass_items.yml");
-            eventsConfig.reloadCfg(Main.getInstance(), "events/player_kill.yml");
+            EventsConfig eventsConfig = plugin.getEventsConfig();
+            eventsConfig.reloadAll();
 
             sender.sendMessage(hex("&aКонфиги перезагружены"));
 

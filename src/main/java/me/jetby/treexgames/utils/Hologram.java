@@ -22,6 +22,7 @@ public class Hologram {
                 hologram.realignLines();
             }
             DHAPI.setHologramLines(hologram, lines);
+
         }
     }
     public static void updateHologram( List<String> lines){

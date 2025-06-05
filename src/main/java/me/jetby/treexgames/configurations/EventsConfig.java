@@ -1,5 +1,6 @@
 package me.jetby.treexgames.configurations;
 
+import me.jetby.treexgames.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -15,6 +16,10 @@ import java.util.logging.Level;
 import static org.bukkit.Bukkit.getLogger;
 
 public class EventsConfig {
+    private final Main plugin;
+    public EventsConfig(Main plugin) {
+        this.plugin = plugin;
+    }
 
     private static final Map<String, FileConfiguration> configs = new HashMap<>();
 
@@ -39,7 +44,12 @@ public class EventsConfig {
         return configs.get(name);
     }
 
-    public void reloadCfg(Plugin plugin, String name) {
+    public void reloadAll() {
+        for (String name : configs.keySet()) {
+            reloadCfg(name);
+        }
+    }
+    public void reloadCfg(String name) {
         File file = new File(plugin.getDataFolder(), name);
         if (!file.exists()) {
             plugin.getDataFolder().mkdirs();

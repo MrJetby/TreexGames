@@ -14,6 +14,10 @@ import static me.jetby.treexgames.configurations.EventsConfig.E_CFG;
 public class BlockBreaks extends AbstractEvent {
     private static Material blockType;
 
+    public BlockBreaks(Main plugin) {
+        super(plugin.getActions());
+    }
+
     @Override
     public String getConfigPath() {
         return "events/block_break.yml";

@@ -1,5 +1,27 @@
 
 
+events:
+  block_break:
+    enable: true # если поставить на false, то данный ивент больше не появляется в AutoStart
+    chance: 30
+  craft_items:
+    enable: true
+    chance: 30
+  enchant_items:
+    enable: true
+    chance: 30
+  fishing:
+    enable: true
+    chance: 30
+  mob_kills:
+    enable: true
+    chance: 30
+  pass_items:
+    enable: true
+    chance: 30
+  player_kill:
+    enable: true
+    chance: 30
 
 redis:
   # !!! Не трогайте если не знаете что делать

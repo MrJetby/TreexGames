@@ -18,9 +18,13 @@ import static me.jetby.treexgames.gui.EventsMenu.getMenus;
 
 public class EventsMenuListener implements Listener {
 
+    private final Pass_Items passItems;
+    private final Actions actions;
+    public EventsMenuListener(Pass_Items passItems) {
+        this.passItems = passItems;
+        actions = new Actions();
+    }
 
-    static Pass_Items passItems = new Pass_Items();
-    static Actions actions = new Actions();
     static List<String> success = E_CFG("menu.yml").getStringList("Items.pass_items.actions.success");
     static List<String> deny = E_CFG("menu.yml").getStringList("Items.pass_items.actions.deny");
 
@@ -59,7 +63,7 @@ public class EventsMenuListener implements Listener {
 
 
 
-    private static void tryPass(Player player) {
+    private void tryPass(Player player) {
 
         boolean check = false;
         for (ItemStack item : player.getInventory().getContents()) {

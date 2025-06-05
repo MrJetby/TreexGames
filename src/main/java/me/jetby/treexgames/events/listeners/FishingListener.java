@@ -9,6 +9,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class FishingListener implements Listener {
+
+    private final Fishing event;
+    public FishingListener(Fishing event) {
+        this.event = event;
+    }
     @EventHandler
     public void onFish(PlayerFishEvent e) {
         if (API.getNowEvent()!=null &&  !API.getNowEvent().equalsIgnoreCase("fishing")) return;
@@ -18,7 +23,6 @@ public class FishingListener implements Listener {
         if (caught.getType() != Fishing.getItemType()) return;
 
         Player player = e.getPlayer();
-        Fishing event = new Fishing();
         event.addProgress(player, 1);
     }
 }

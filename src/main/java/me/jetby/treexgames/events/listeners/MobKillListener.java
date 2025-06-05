@@ -8,6 +8,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 
 public class MobKillListener implements Listener {
+
+    private final Mob_Kills event;
+    public MobKillListener(Mob_Kills event) {
+        this.event = event;
+    }
     @EventHandler
     public void onKill(EntityDeathEvent e) {
         if (API.getNowEvent()!=null &&  !API.getNowEvent().equalsIgnoreCase("mob_kills")) return;
@@ -15,7 +20,6 @@ public class MobKillListener implements Listener {
 
         Player killer = e.getEntity().getKiller();
         if (killer != null) {
-            Mob_Kills event = new Mob_Kills();
             event.addProgress(killer, 1);
         }
     }

@@ -4,7 +4,7 @@
   <groupId>me.jetby</groupId>
   <artifactId>TreexGames</artifactId>
   <name>TreexGames</name>
-  <version>1.0</version>
+  <version>1.1</version>
   <build>
     <resources>
       <resource>
@@ -70,6 +70,12 @@
       <groupId>com.github.decentsoftware-eu</groupId>
       <artifactId>decentholograms</artifactId>
       <version>2.7.11</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.34</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>

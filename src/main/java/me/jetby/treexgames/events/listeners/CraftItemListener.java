@@ -13,6 +13,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CraftItemListener implements Listener {
+
+    private final Craft_Items event;
+    public CraftItemListener(Craft_Items event) {
+        this.event = event;
+    }
     @EventHandler
     public void onCraft(CraftItemEvent e) {
         if (API.getNowEvent()!=null && !API.getNowEvent().equalsIgnoreCase("craft_items")) return;
@@ -48,7 +53,6 @@ public class CraftItemListener implements Listener {
 
         int totalCrafted = craftCount * resultAmount;
 
-        Craft_Items event = new Craft_Items();
         event.addProgress(player, totalCrafted);
     }
 

@@ -1,42 +1,47 @@
 package me.jetby.treexgames.managers;
 
+import me.jetby.treexgames.Main;
 import me.jetby.treexgames.events.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
-import static me.jetby.treexgames.managers.API.getNowEvent;
-import static me.jetby.treexgames.managers.API.setTimer;
+import static me.jetby.treexgames.managers.API.*;
 
 public class Triggers {
-    static Mob_Kills mobKill = new Mob_Kills();
-    static Craft_Items craft = new Craft_Items();
-    static Enchant_Items enchantEvent = new Enchant_Items();
-    static BlockBreaks blockBreaks = new BlockBreaks();
-    static Fishing fishing = new Fishing();
-    static PlayerKills playerKills = new PlayerKills();
-    static Pass_Items passItems = new Pass_Items();
 
-    public static void startRandomEvent() {
-        List<String> eventsList = new ArrayList<>();
+    public Triggers(Main plugin) {
+        this.mobKill = plugin.getMobKills();
+        this.craft = plugin.getCraftItems();
+        this.enchantEvent = plugin.getEnchantItems();
+        this.blockBreaks = plugin.getBlockBreaks();
+        this.fishing = plugin.getFishing();
+        this.playerKills = plugin.getPlayerKills();
+        this.passItems = plugin.getPassItems();
+    }
+    private final Mob_Kills mobKill;
+    private final Craft_Items craft;
+    private final Enchant_Items enchantEvent;
+    private final BlockBreaks blockBreaks;
+    private final Fishing fishing;
+    private final PlayerKills playerKills;
+    private final Pass_Items passItems;
 
-        eventsList.add("mob_kills");
-        eventsList.add("craft_items");
-        eventsList.add("enchant_items");
-        eventsList.add("block_break");
-        eventsList.add("fishing");
-        eventsList.add("player_kill");
-        eventsList.add("pass_items");
+    public void startRandomEvent() {
+        Map<String, Integer> events = getEventsList();
+        List<String> enabledEvents = new ArrayList<>(events.keySet());
+
+        if (enabledEvents.isEmpty()) return;
 
         Random random = new Random();
-        int number = random.nextInt(6);
+        int number = random.nextInt(enabledEvents.size());
 
-        startEvent(eventsList.get(number));
-
-
+        startEvent(enabledEvents.get(number));
     }
-    public static void endEvent() {
+
+    public void endEvent() {
         if (!getNowEvent().equalsIgnoreCase("none")) {
             API.setNowEvent(null);
             setTimer(0);
@@ -44,7 +49,7 @@ public class Triggers {
 
 
     }
-    public static void startEvent(String name) {
+    public void startEvent(String name) {
 
         if (name.equalsIgnoreCase("mob_kills")) {
             API.setNowEvent("mob_kills");

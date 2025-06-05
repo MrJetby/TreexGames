@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static me.jetby.treexgames.configurations.Config.CFG;
+import static org.bukkit.Bukkit.getPluginManager;
 
 @Getter
 public final class Main extends JavaPlugin {
@@ -95,7 +96,7 @@ public final class Main extends JavaPlugin {
 
         new Metrics(this, 25471);
 
-        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+        if (getPluginManager().getPlugin("PlaceholderAPI") != null) {
             placeholderExpansion = new PlaceholdersAPI();
             placeholderExpansion.register();
         } else {

@@ -6,6 +6,7 @@ duration: 3600
 random-item:
   - '[SAND] Песок'
   - '[STICK] Палка'
+  - '[ENCHANTED_GOLDEN_APPLE] Зачарованное золотое яблоко'
 
 # %treexgames_top_<число>_progress%
 # %treexgames_top_<число>_name%
@@ -49,25 +50,36 @@ holo-start:
 
 actions:
   on_start:
-    - '[MESSAGE] Ивент %treexgames_nowEvent_prefix% начался'
+    - '[MESSAGE] '
+    - '[MESSAGE] &d▶ &fИвент &dЗахват ресурсов &fначался'
+    - '[MESSAGE] '
+    - '[MESSAGE] &d╓ &fТип захвата: &d%treexgames_nowEvent_prefix%'
+    - '[MESSAGE] &d╟ &fПредмет: &d%item%'
+    - '[MESSAGE] &d╙ &fВремя на выполнение: &d1 час'
+    - '[MESSAGE] '
 
   on_end_prizes:
-    CHICKEN:
+    STICK:
       - '[CONSOLE] money give %treexgames_top_1_name% 50000'
       - '[CONSOLE] money give %treexgames_top_2_name% 10000'
       - '[CONSOLE] money give %treexgames_top_3_name% 5000'
-    ZOMBIE:
+    ENCHANTED_GOLDEN_APPLE:
       - '[CONSOLE] money give %treexgames_top_1_name% 250000'
       - '[CONSOLE] money give %treexgames_top_2_name% 150000'
       - '[CONSOLE] money give %treexgames_top_3_name% 100000'
-    PIG:
+    SAND:
       - '[CONSOLE] money give %treexgames_top_1_name% 150000'
       - '[CONSOLE] money give %treexgames_top_2_name% 100000'
       - '[CONSOLE] money give %treexgames_top_3_name% 50000'
 
   on_end:
-    - '[MESSAGE] Ивент %treexgames_nowEvent_prefix% закончился'
-    - '[MESSAGE] Победители'
-    - '[MESSAGE] &7#1 %treexgames_top_1% &fубийств'
-    - '[MESSAGE] &7#2 %treexgames_top_2% &fубийств'
-    - '[MESSAGE] &7#3 %treexgames_top_3% &fубийств'
+    - '[MESSAGE] '
+    - '[MESSAGE] &d▶ &fИвент &dЗахват ресурсов &fподошёл к концу'
+    - '[MESSAGE] '
+    - '[MESSAGE] &d◆ &fПобедители'
+    - '[MESSAGE] &7#1 %treexgames_top_1% &fблоков'
+    - '[MESSAGE] &7#2 %treexgames_top_2% &fблоков'
+    - '[MESSAGE] &7#3 %treexgames_top_3% &fблоков'
+    - '[MESSAGE] '
+    - '[MESSAGE] &a▶ &fНаграды успешно выданы.'
+    - '[MESSAGE] '

@@ -4,6 +4,8 @@ main: me.jetby.treexgames.Main
 api-version: '1.16'
 depend:
   - DecentHolograms
+soft-depend:
+  - PlaceholderAPI
 commands:
   treexgames: {}
   capture: {}

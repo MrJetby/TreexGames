@@ -4,6 +4,8 @@ duration: 3600
 
 random-item:
   - '[TROPICAL_FISH] Тропическая рыба'
+  - '[SALMON] Лосось'
+  - '[PUFFERFISH] Иглобрюх'
   - '[LEATHER_BOOTS] Кожаные ботинки'
 
 # %treexgames_top_<число>_progress%
@@ -47,7 +49,13 @@ holo-start:
 ####################################################################################################
 actions:
   on_start:
-    - '[MESSAGE] Ивент %treexgames_nowEvent_prefix% начался'
+    - '[MESSAGE] '
+    - '[MESSAGE] &d▶ &fИвент &dЗахват ресурсов &fначался'
+    - '[MESSAGE] '
+    - '[MESSAGE] &d╓ &fТип захвата: &d%treexgames_nowEvent_prefix%'
+    - '[MESSAGE] &d╟ &fПредмет: &d%item%'
+    - '[MESSAGE] &d╙ &fВремя на выполнение: &d1 час'
+    - '[MESSAGE] '
 
   on_end_prizes:
     TROPICAL_FISH:
@@ -58,10 +66,23 @@ actions:
       - '[CONSOLE] money give %treexgames_top_1_name% 250000'
       - '[CONSOLE] money give %treexgames_top_2_name% 150000'
       - '[CONSOLE] money give %treexgames_top_3_name% 100000'
+    SALMON:
+      - '[CONSOLE] money give %treexgames_top_1_name% 50000'
+      - '[CONSOLE] money give %treexgames_top_2_name% 10000'
+      - '[CONSOLE] money give %treexgames_top_3_name% 5000'
+    PUFFERFISH:
+      - '[CONSOLE] money give %treexgames_top_1_name% 250000'
+      - '[CONSOLE] money give %treexgames_top_2_name% 150000'
+      - '[CONSOLE] money give %treexgames_top_3_name% 100000'
 
   on_end:
-    - '[MESSAGE] Ивент %treexgames_nowEvent_prefix% закончился'
-    - '[MESSAGE] Победители'
-    - '[MESSAGE] &7#1 %treexgames_top_1% &fубийств'
-    - '[MESSAGE] &7#2 %treexgames_top_2% &fубийств'
-    - '[MESSAGE] &7#3 %treexgames_top_3% &fубийств'
+    - '[MESSAGE] '
+    - '[MESSAGE] &d▶ &fИвент &dЗахват ресурсов &fподошёл к концу'
+    - '[MESSAGE] '
+    - '[MESSAGE] &d◆ &fПобедители'
+    - '[MESSAGE] &7#1 %treexgames_top_1% &fблоков'
+    - '[MESSAGE] &7#2 %treexgames_top_2% &fблоков'
+    - '[MESSAGE] &7#3 %treexgames_top_3% &fблоков'
+    - '[MESSAGE] '
+    - '[MESSAGE] &a▶ &fНаграды успешно выданы.'
+    - '[MESSAGE] '
